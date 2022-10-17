@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_URL = "https://project16shortly.herokuapp.com";
 
 function createHeaders() {
-  const auth = JSON.parse(localStorage.getItem("mywallet"));
+  const auth = JSON.parse(localStorage.getItem("shortly"));
   const config = {
     headers: {
       Authorization: `Bearer ${auth.token}`,

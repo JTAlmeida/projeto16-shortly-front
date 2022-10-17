@@ -16,7 +16,8 @@ export default function PrivatePage({ children }) {
   function renderError() {
     localStorage.clear("shortly");
     setUser("");
-    navigate("/");
+
+    return <Home />;
   }
 
   const timeNow = +new Date();

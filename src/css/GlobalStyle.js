@@ -141,16 +141,10 @@ const Global = css`
   body {
     width: 100vw;
     height: 100vh;
-    background-color: #E5E5E5;
+    background-color: #f4f4f4;
     font-family: 'Lexend Deca', sans-serif;
     word-wrap: break-word;
   }
-
-  /*#root {
-    width: 100vw;
-    height: 100vh;
-    word-wrap: break-word;
-  }*/
 
   button {
     border: none;

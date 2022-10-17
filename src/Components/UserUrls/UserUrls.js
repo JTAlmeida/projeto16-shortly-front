@@ -1,3 +1,10 @@
+import Header from "../Header/Header";
+
 export default function UserUrls() {
-  return <>User urls</>;
+  return (
+    <>
+      <Header />
+      User urls
+    </>
+  );
 }

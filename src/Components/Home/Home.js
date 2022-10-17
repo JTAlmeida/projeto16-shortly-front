@@ -1,13 +1,11 @@
-import logo from "../../assets/logo.png";
 import trophy from "../../assets/trophy.png";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { getRanking } from "../../services/shortlyService";
+import Header from "../Header/Header";
 import UserContext from "../../contexts/UserContext";
 import {
   Wrapper,
-  HeaderMenus,
-  HeaderLogo,
   RankingContainer,
   RankingWrapper,
   Footer,
@@ -22,6 +20,7 @@ export default function Home() {
   useEffect(() => {
     if (user !== "") {
       setUser(JSON.parse(localStorage.getItem("shortly")));
+
       return navigate("/me");
     }
 
@@ -44,14 +43,7 @@ export default function Home() {
   return (
     <>
       <Wrapper>
-        <HeaderMenus>
-          <Link to="/sign-in">Entrar</Link>
-          <Link to="/sign-up">Cadastrar-se</Link>
-        </HeaderMenus>
-        <HeaderLogo>
-          Shortly
-          <img src={logo} alt="logo" />
-        </HeaderLogo>
+        <Header />
         <RankingWrapper>
           <span>
             <img src={trophy} alt="trophy" />
@@ -62,12 +54,10 @@ export default function Home() {
               <>
                 {ranking.map((rank, index) => {
                   return (
-                    <>
-                      <p>
-                        {index + 1}. {rank.name} - {rank.linksCount} links -{" "}
-                        {rank.visitCount} visualizações
-                      </p>
-                    </>
+                    <p key={index}>
+                      {index + 1}. {rank.name} - {rank.linksCount} links -{" "}
+                      {rank.visitCount} visualizações
+                    </p>
                   );
                 })}
               </>
@@ -75,7 +65,9 @@ export default function Home() {
               <h1>Nenhuma URL foi encurtada ainda!</h1>
             )}
           </RankingContainer>
-          <Footer>Crie sua conta para usar nosso serviço!</Footer>
+          <Footer>
+            <Link to="/sign-up">Crie sua conta para usar nosso serviço!</Link>
+          </Footer>
         </RankingWrapper>
       </Wrapper>
     </>

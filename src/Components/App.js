@@ -34,6 +34,14 @@ function App() {
                 </PrivatePage>
               }
             ></Route>
+            <Route
+              path="/ranking"
+              element={
+                <PrivatePage>
+                  <Ranking />
+                </PrivatePage>
+              }
+            ></Route>
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>
