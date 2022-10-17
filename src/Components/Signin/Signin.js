@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import { signIn } from "../../services/shortlyService";
 import Header from "../Header/Header";
 import { ThreeDots } from "react-loader-spinner";
 import { Wrapper, Form, Input, Button } from "./Signin.style";
+import Swal from "sweetalert2";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -36,12 +37,11 @@ export default function Signup() {
 
     const promise = signIn(form);
     promise.catch((res) => {
-      alert(res.response.data.message);
+      Swal.fire(res.response.data.message);
       setIsLoading(false);
     });
 
     promise.then((res) => {
-      console.log(res);
       const timestamp = +new Date();
       setIsLoading(false);
       setUser(res.data);

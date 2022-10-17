@@ -10,6 +10,7 @@ import {
   RankingWrapper,
   Footer,
 } from "./Home.style";
+import Swal from "sweetalert2";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ export default function Home() {
     const promise = getRanking();
 
     promise.catch((res) => {
-      alert(res.response.data.message);
+      Swal.fire(res.response.data.message);
     });
 
     promise.then((res) => {

@@ -8,6 +8,14 @@ export const HeaderMenus = styled.div`
   margin-right: 9vw;
   margin-bottom: 25px;
 
+  span {
+    position: absolute;
+    left: 9vw;
+    color: rgba(93, 144, 64, 1);
+    font-size: 18px;
+    font-weight: 600;
+  }
+
   a {
     position: relative;
     display: flex;
@@ -51,7 +59,6 @@ export const HeaderLogo = styled.div`
   a {
     display: flex;
     color: rgba(0, 0, 0, 1);
-;
   }
 
   img {

@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import { HeaderMenus, HeaderLogo } from "./Header.style";
 import logo from "../../assets/logo.png";
 import UserContext from "../../contexts/UserContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getUserInfo } from "../../services/shortlyService";
 
 export default function Header() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     if (user !== "") {
@@ -17,14 +18,36 @@ export default function Header() {
       });
 
       userPromise.then((res) => {
-        console.log(res.data);
+        setName(res.data.name);
       });
     }
   }, []);
+
   return (
     <>
       {user ? (
-        <>Tem user</>
+        <>
+          <HeaderMenus>
+            <span>Seja bem-vindo(a), {name.split(" ")[0]}!</span>
+            <Link to="/me">Home</Link>
+            <Link to="/ranking">Ranking</Link>
+            <Link
+              to="/"
+              onClick={() => {
+                setUser("");
+                localStorage.removeItem("shortly");
+              }}
+            >
+              Sair
+            </Link>
+          </HeaderMenus>
+          <HeaderLogo>
+            <Link to="/">
+              Shortly
+              <img src={logo} alt="logo" />
+            </Link>
+          </HeaderLogo>
+        </>
       ) : (
         <>
           <HeaderMenus>
